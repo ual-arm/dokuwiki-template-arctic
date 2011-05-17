@@ -266,7 +266,7 @@ function tpl_sidebar_dispatch($sb,$pos) {
             // check for user defined sidebars
             if(@file_exists(DOKU_TPLINC.'sidebars/'.$sb.'/sidebar.php')) {
                 print '<div class="'.$sb.'_sidebar sidebar_box">' . DOKU_LF;
-                @require_once(DOKU_TPLINC.'sidebars/'.$sb.'/sidebar.php');
+                tpl_include('sidebars/'.$sb.'/sidebar.php');
                 print '</div>' . DOKU_LF;
             }
             break;

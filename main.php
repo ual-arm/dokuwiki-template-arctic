@@ -18,7 +18,7 @@
 if (!defined('DOKU_INC')) die();
 
 // include custom arctic template functions
-require_once(dirname(__FILE__).'/tpl_functions.php');
+tpl_include('tpl_functions.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
