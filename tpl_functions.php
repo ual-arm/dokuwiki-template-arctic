@@ -364,7 +364,7 @@ function _getNsSb($id) {
  */
 function tpl_sidebar_hide() {
     global $ACT;
-    $act_hide = array( 'edit', 'preview', 'admin', 'conflict', 'draft', 'recover');
+    $act_hide = array( 'edit', 'preview', 'admin', 'conflict', 'draft', 'recover', 'media' );
     if(in_array($ACT, $act_hide)) {
         return true;
     } else {

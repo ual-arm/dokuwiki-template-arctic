@@ -85,7 +85,7 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
                       $npd->html_new_page_button();
                     }
                     tpl_actionlink('edit');
-                    tpl_actionlink('history');
+                    #tpl_actionlink('history');
                     break;
                 } 
             }
@@ -214,10 +214,12 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
             case('buttons'):
                 tpl_button('edit');
                 tpl_button('history');
+                tpl_button('media');
               break;
             case('links'):
                 tpl_actionlink('edit');
-                tpl_actionlink('history');
+                #tpl_actionlink('history');
+                tpl_actionlink('media');
               break;
           }
         ?>

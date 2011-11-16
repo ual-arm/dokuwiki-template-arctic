@@ -411,6 +411,7 @@ div.dokuwiki div.toolbox_sidebar a.top {
   background: transparent url(images/tool-top.png) 0px 5px no-repeat;
 }
 
+div.dokuwiki div.bar a.media,
 div.dokuwiki div.bar a.login,
 div.dokuwiki div.bar a.logout,
 div.dokuwiki div.bar a.index,
@@ -491,3 +492,7 @@ div.dokuwiki div.bar a.top {
 div.dokuwiki div.bar a.revert {
   background: transparent url(images/tool-revert.png) 0px 5px no-repeat;
 }
+div.dokuwiki div.bar a.media {
+  background: transparent url(/lib/images/mediamanager.png) 0px 5px no-repeat;
+}
+
