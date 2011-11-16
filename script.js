@@ -9,7 +9,7 @@
  */
 function addSbLeftTocToggle() {
     if(!document.getElementById) return;
-    var header = $('sb__left__toc__header');
+    var header = jQuery('sb__left__toc__header');
     if(!header) return;
 
     var obj          = document.createElement('span');
@@ -18,8 +18,10 @@ function addSbLeftTocToggle() {
     obj.className    = 'toc_close';
     obj.style.cursor = 'pointer';
 
-    prependChild(header,obj);
-    obj.parentNode.onclick = toggleSbLeftToc;
+    //prependChild(header,obj);
+    jQuery( header ).prepend( obj );
+    //obj.parentNode.onclick = toggleSbLeftToc;
+    jQuery( obj.parentNode ).bind( 'click', toggleSbLeftToc );
     try {
        obj.parentNode.style.cursor = 'pointer';
        obj.parentNode.style.cursor = 'hand';
@@ -30,8 +32,8 @@ function addSbLeftTocToggle() {
  * This toggles the visibility of the Table of Contents
  */
 function toggleSbLeftToc() {
-  var toc = $('sb__left__toc__inside');
-  var obj = $('sb__left__toc__toggle');
+  var toc = jQuery('sb__left__toc__inside');
+  var obj = jQuery('sb__left__toc__toggle');
   if(toc.style.display == 'none') {
     toc.style.display   = '';
     obj.innerHTML       = '<span>&minus;</span>';
@@ -48,7 +50,7 @@ function toggleSbLeftToc() {
  */
 function addSbRightTocToggle() {
     if(!document.getElementById) return;
-    var header = $('sb__right__toc__header');
+    var header = jQuery('sb__right__toc__header');
     if(!header) return;
 
     var obj          = document.createElement('span');
@@ -57,8 +59,11 @@ function addSbRightTocToggle() {
     obj.className    = 'toc_close';
     obj.style.cursor = 'pointer';
 
-    prependChild(header,obj);
-    obj.parentNode.onclick = toggleSbRightToc;
+    //prependChild(header,obj);
+    jQuery( header ).prepend( obj );
+
+    //obj.parentNode.onclick = toggleSbRightToc;
+    jQuery( obj.parentNode ).bind( 'click', toggleSbRightToc );
     try {
        obj.parentNode.style.cursor = 'pointer';
        obj.parentNode.style.cursor = 'hand';
@@ -69,8 +74,8 @@ function addSbRightTocToggle() {
  * This toggles the visibility of the Table of Contents
  */
 function toggleSbRightToc() {
-  var toc = $('sb__right__toc__inside');
-  var obj = $('sb__right__toc__toggle');
+  var toc = jQuery('sb__right__toc__inside');
+  var obj = jQuery('sb__right__toc__toggle');
   if(toc.style.display == 'none') {
     toc.style.display   = '';
     obj.innerHTML       = '<span>&minus;</span>';
@@ -83,13 +88,36 @@ function toggleSbRightToc() {
 }
 
 // add TOC events
-addInitEvent(addSbLeftTocToggle);
-addInitEvent(addSbRightTocToggle);
+jQuery(addSbLeftTocToggle);
+jQuery(addSbRightTocToggle);
 
-// add AJAX index events
-addInitEvent(function(){
-    index.treeattach($('left__index__tree'));
-    index.treeattach($('right__index__tree'));
+
+// from lib/scripts/index.js 
+var left_dw_index = jQuery('#left__index__tree').dw_tree({deferInit: true,
+    load_data: function  (show_sublist, $clicky) {
+        jQuery.post(
+            DOKU_BASE + 'lib/exe/ajax.php',
+            $clicky[0].search.substr(1) + '&call=index',
+            show_sublist, 'html'
+        );
+    }
+});  
+var right_dw_index = jQuery('#right__index__tree').dw_tree({deferInit: true,
+    load_data: function  (show_sublist, $clicky) {
+        jQuery.post(
+            DOKU_BASE + 'lib/exe/ajax.php',
+            $clicky[0].search.substr(1) + '&call=index',
+            show_sublist, 'html'
+        );
+    }
+});  
+jQuery(function(){
+    var $tree = jQuery('#left__index__tree');
+    left_dw_index.$obj = $tree;
+    left_dw_index.init();
+    var $tree = jQuery('#right__index__tree');
+    right_dw_index.$obj = $tree;
+    right_dw_index.init();
 });
 
 // vim:ts=4:sw=4:et:enc=utf-8:
