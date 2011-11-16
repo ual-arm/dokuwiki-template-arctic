@@ -77,7 +77,6 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
                       $npd->html_new_page_button();
                     }
                     tpl_button('edit');
-                    tpl_button('history');     
                     break;
                   case('links'):
                     // check if new page button plugin is available
@@ -85,7 +84,6 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
                       $npd->html_new_page_button();
                     }
                     tpl_actionlink('edit');
-                    #tpl_actionlink('history');
                     break;
                 } 
             }
@@ -218,7 +216,7 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
               break;
             case('links'):
                 tpl_actionlink('edit');
-                #tpl_actionlink('history');
+                tpl_actionlink('history');
                 tpl_actionlink('media');
               break;
           }
