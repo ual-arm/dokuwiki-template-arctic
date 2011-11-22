@@ -212,12 +212,10 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
             case('buttons'):
                 tpl_button('edit');
                 tpl_button('history');
-                tpl_button('media');
               break;
             case('links'):
                 tpl_actionlink('edit');
                 tpl_actionlink('history');
-                tpl_actionlink('media');
               break;
           }
         ?>
@@ -226,10 +224,12 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
         <?php 
           switch(tpl_getConf('wiki_actionlinks')) {
             case('buttons'):
+                tpl_button('media');
                 tpl_button('subscription');
                 tpl_button('top');
               break;
             case('links'):
+                tpl_actionlink('media');
                 tpl_actionlink('subscription');
                 tpl_actionlink('top');
               break;

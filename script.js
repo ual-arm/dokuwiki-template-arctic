@@ -9,8 +9,8 @@
  */
 function addSbLeftTocToggle() {
     if(!document.getElementById) return;
-    var header = jQuery('sb__left__toc__header');
-    if(!header) return;
+    var header = jQuery('#sb__left__toc__header');
+    if(!header.length) return;
 
     var obj          = document.createElement('span');
     obj.id           = 'sb__left__toc__toggle';
@@ -32,13 +32,14 @@ function addSbLeftTocToggle() {
  * This toggles the visibility of the Table of Contents
  */
 function toggleSbLeftToc() {
-  var toc = jQuery('sb__left__toc__inside');
-  var obj = jQuery('sb__left__toc__toggle');
-  if(toc.style.display == 'none') {
-    toc.style.display   = '';
+  var toc = jQuery('#sb__left__toc__inside');
+  var obj = jQuery('#sb__left__toc__toggle');
+  if( toc.css( 'display' ) == 'none' ) {
+    toc.css( 'display', 'block' );
     obj.innerHTML       = '<span>&minus;</span>';
     obj.className       = 'toc_close';
   } else {
+    toc.css( 'display', 'none' );
     toc.style.display   = 'none';
     obj.innerHTML       = '<span>+</span>';
     obj.className       = 'toc_open';
@@ -50,8 +51,8 @@ function toggleSbLeftToc() {
  */
 function addSbRightTocToggle() {
     if(!document.getElementById) return;
-    var header = jQuery('sb__right__toc__header');
-    if(!header) return;
+    var header = jQuery('#sb__right__toc__header');
+    if(!header.length) return;
 
     var obj          = document.createElement('span');
     obj.id           = 'sb__right__toc__toggle';
@@ -74,25 +75,20 @@ function addSbRightTocToggle() {
  * This toggles the visibility of the Table of Contents
  */
 function toggleSbRightToc() {
-  var toc = jQuery('sb__right__toc__inside');
-  var obj = jQuery('sb__right__toc__toggle');
-  if(toc.style.display == 'none') {
-    toc.style.display   = '';
+  var toc = jQuery('#sb__right__toc__inside');
+  var obj = jQuery('#sb__right__toc__toggle');
+
+  if( toc.css( 'display' ) == 'none' ) {
+    toc.css( 'display', 'block' );
     obj.innerHTML       = '<span>&minus;</span>';
     obj.className       = 'toc_close';
   } else {
-    toc.style.display   = 'none';
+    toc.css( 'display', 'none' );
     obj.innerHTML       = '<span>+</span>';
     obj.className       = 'toc_open';
   }
 }
 
-// add TOC events
-jQuery(addSbLeftTocToggle);
-jQuery(addSbRightTocToggle);
-
-
-// from lib/scripts/index.js 
 var left_dw_index = jQuery('#left__index__tree').dw_tree({deferInit: true,
     load_data: function  (show_sublist, $clicky) {
         jQuery.post(
@@ -111,13 +107,21 @@ var right_dw_index = jQuery('#right__index__tree').dw_tree({deferInit: true,
         );
     }
 });  
+
 jQuery(function(){
+// from lib/scripts/index.js 
     var $tree = jQuery('#left__index__tree');
     left_dw_index.$obj = $tree;
     left_dw_index.init();
+
     var $tree = jQuery('#right__index__tree');
     right_dw_index.$obj = $tree;
     right_dw_index.init();
+
+// add TOC events
+    jQuery(addSbLeftTocToggle);
+    jQuery(addSbRightTocToggle);
+
 });
 
 // vim:ts=4:sw=4:et:enc=utf-8:
