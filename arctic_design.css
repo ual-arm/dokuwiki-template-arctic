@@ -20,6 +20,9 @@ div#wrapper {
   background: __background__;
   padding: __page_padding__;
 }
+div#wrapper.media {
+  width: __wiki_full_width__;
+}
 
 div.dokuwiki div.left_sidebar {
   float: left;

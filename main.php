@@ -17,6 +17,8 @@
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 
+global $ACT;
+
 // include custom arctic template functions
 require_once(dirname(__FILE__).'/tpl_functions.php');
 ?>
@@ -40,7 +42,7 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
 </head>
 <body>
 <?php /*old includehook*/ @include(dirname(__FILE__).'/topheader.html')?>
-<div id="wrapper">
+<div id="wrapper" class='<?php echo $ACT ?>'>
   <div class="dokuwiki">
 
     <?php html_msgarea()?>
