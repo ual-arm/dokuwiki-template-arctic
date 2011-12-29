@@ -164,6 +164,11 @@ div.dokuwiki a.urlextern{
     background: transparent url(images/urlextern.png) 0px 1px no-repeat;
     padding-left: 18px;
 }
+div.dokuwiki a.urlextern:visited,
+div.dokuwiki a.windows:visited,
+div.dokuwiki a.interwiki:visited {
+  color: __visited__;
+}
 
 /* general headline setup */
 div.dokuwiki h1 a,
@@ -403,7 +408,7 @@ div.dokuwiki div.toolbox_sidebar a.backlink {
   background: transparent url(images/tool-backlink.png) 0px 1px no-repeat;
 }
 div.dokuwiki div.toolbox_sidebar a.media {
-  background: transparent url(/lib/images/mediamanager.png) 0px 1px no-repeat;
+  background: transparent url(images/mediamanager.png) 0px 1px no-repeat;
 }
 
 div.dokuwiki div.toolbox_sidebar a.profile {
@@ -500,6 +505,6 @@ div.dokuwiki div.bar a.revert {
   background: transparent url(images/tool-revert.png) 0px 5px no-repeat;
 }
 div.dokuwiki div.bar a.media {
-  background: transparent url(/lib/images/mediamanager.png) 0px 5px no-repeat;
+  background: transparent url(images/mediamanager.png) 0px 5px no-repeat;
 }
 
