@@ -1,10 +1,14 @@
 # Makefile for DokuWiki Template Arctic
 #
 # @author Michael Klier <chi@chimeric.de>
+# @author Samuel Fischer <sf@notomorrow.de>
 
 DIST_VERSION=`cat VERSION`
 DIST_NAME=template-arctic-$(DIST_VERSION)
-DIST_DIR=../arctic
+DIST_DIR=.
+APP_NAME=arctic
+DOKU_DIR=$(DIST_DIR)
+DOKU_DIR=/var/www/notomorrow.de/dokuwiki/lib/tpl/default
 
 # {{{ DOCS
 DOCS=$(DIST_DIR)/README \
@@ -13,16 +17,26 @@ DOCS=$(DIST_DIR)/README \
 # }}}
 
 # {{{ CSS
-CSS=$(DIST_DIR)/arctic_design.css \
+ARCTIC_CSS=$(DIST_DIR)/arctic_design.css \
 	$(DIST_DIR)/arctic_layout.css \
 	$(DIST_DIR)/arctic_media.css \
 	$(DIST_DIR)/arctic_print.css \
-	$(DIST_DIR)/arctic_rtl.css\
-	$(DIST_DIR)/design.css \
-	$(DIST_DIR)/layout.css \
-	$(DIST_DIR)/media.css \
-	$(DIST_DIR)/print.css \
-	$(DIST_DIR)/rtl.css
+	$(DIST_DIR)/arctic_rtl.css
+
+DOKU_CSS=$(DOKU_DIR)/_admin.css \
+	$(DOKU_DIR)/_fileuploader.css \
+	$(DOKU_DIR)/_linkwiz.css \
+	$(DOKU_DIR)/_mediamanager.css \
+	$(DOKU_DIR)/_mediaoptions.css \
+	$(DOKU_DIR)/_subscription.css \
+	$(DOKU_DIR)/_tabs.css \
+	$(DOKU_DIR)/design.css \
+	$(DOKU_DIR)/layout.css \
+	$(DOKU_DIR)/media.css \
+	$(DOKU_DIR)/print.css \
+	$(DOKU_DIR)/rtl.css
+
+CSS=$(ARCTIC_CSS) $(DOKU_CSS)
 # }}}
 
 # {{{ STYLE_INI
@@ -31,16 +45,18 @@ STYLE_INI=$(DIST_DIR)/style.ini \
 # }}}
 
 # {{{ PHP
-PHP=$(DIST_DIR)/detail.php \
-	$(DIST_DIR)/main.php \
-	$(DIST_DIR)/mediamanager.php \
+ARCTIC_PHP=$(DOKU_DIR)/detail.php \
+	$(DOKU_DIR)/mediamanager.php
+
+DOKU_PHP=$(DIST_DIR)/main.php \
 	$(DIST_DIR)/tpl_functions.php
+
+PHP=$(ARCTIC_PHP) $(DOKU_PHP)
+
 # }}}
 
 # {{{ HTML
-HTML=$(DIST_DIR)/footer.html \
-	 $(DIST_DIR)/left_sidebar.html \
-	 $(DIST_DIR)/right_sidebar.html
+HTML=$(DIST_DIR)/footer.html
 # }}}
 
 # {{{ SCRIPT
@@ -88,21 +104,15 @@ IMAGES=$(DIST_DIR)/images/bullet.gif \
 	   $(DIST_DIR)/images/tool-source.png \
 	   $(DIST_DIR)/images/tool-subscribe.png \
 	   $(DIST_DIR)/images/tool-top.png \
+	   $(DIST_DIR)/images/tool-revert.png \
 	   $(DIST_DIR)/images/urlextern.png \
-	   $(DIST_DIR)/images/windows.gif
+	   $(DIST_DIR)/images/windows.gif \
+       $(DIST_DIR)/images/mediamanager.png \
+       $(DIST_DIR)/images/resizecol.png
 # }}}
 
 # {{{ LANG
-LANG=$(DIST_DIR)/lang/de/settings.php \
-     $(DIST_DIR)/lang/cs/settings.php \
-     $(DIST_DIR)/lang/en/settings.php \
-     $(DIST_DIR)/lang/eo/settings.php \
-     $(DIST_DIR)/lang/es/settings.php \
-     $(DIST_DIR)/lang/fr/settings.php \
-     $(DIST_DIR)/lang/it/settings.php \
-     $(DIST_DIR)/lang/pl/settings.php \
-     $(DIST_DIR)/lang/pt/settings.php \
-     $(DIST_DIR)/lang/ru/settings.php
+LANG=$(DIST_DIR)/lang/
 # }}}
 
 # {{{ CONF
@@ -113,7 +123,22 @@ CONF=$(DIST_DIR)/conf/default.php \
 DIST_FILES= $(DOCS) $(CSS) $(HTML) $(SCRIPT) $(PHP) $(STYLE_INI) $(IMAGES) $(LANG) $(CONF)
 
 dist:
-	tar czf $(DIST_NAME).tgz $(DIST_FILES)
+	@mkdir $(APP_NAME)
+	cp $(DOCS) $(CSS) $(HTML) $(SCRIPT) $(PHP) $(STYLE_INI) $(APP_NAME)/
+	cp -r $(LANG) $(APP_NAME)
+
+	@mkdir -p $(APP_NAME)/images
+	cp $(IMAGES) $(APP_NAME)/images
+
+	@mkdir -p $(APP_NAME)/conf
+	cp $(CONF) $(APP_NAME)/conf
+
+	@mkdir -p $(APP_NAME)/sidebars
+	@touch $(APP_NAME)/sidebars/_dummy
+
+	mkdir pkg
+	tar czf pkg/$(DIST_NAME).tgz $(APP_NAME)/
+	rm -r $(APP_NAME)
 
 clean: 
 	rm $(DIST_NAME).tgz
