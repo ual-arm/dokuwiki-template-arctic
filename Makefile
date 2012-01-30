@@ -107,7 +107,8 @@ IMAGES=$(DIST_DIR)/images/bullet.gif \
 	   $(DIST_DIR)/images/tool-revert.png \
 	   $(DIST_DIR)/images/urlextern.png \
 	   $(DIST_DIR)/images/windows.gif \
-       $(DIST_DIR)/images/mediamanager.png
+       $(DIST_DIR)/images/mediamanager.png \
+       $(DIST_DIR)/images/resizecol.png
 # }}}
 
 # {{{ LANG
