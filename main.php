@@ -133,10 +133,10 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
 
     <?php if(tpl_getConf('sidebar') == 'left') { ?>
 
-      <?php if(!tpl_sidebar_hide()) { ?>
+      <?php if(!arctic_tpl_sidebar_hide()) { ?>
         <div class="left_sidebar">
           <?php tpl_searchform() ?>
-          <?php tpl_sidebar('left') ?>
+          <?php arctic_tpl_sidebar('left') ?>
         </div>
         <div class="right_page">
           <?php ($notoc) ? tpl_content(false) : tpl_content() ?>
@@ -149,13 +149,13 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
 
     <?php } elseif(tpl_getConf('sidebar') == 'right') { ?>
 
-      <?php if(!tpl_sidebar_hide()) { ?>
+      <?php if(!arctic_tpl_sidebar_hide()) { ?>
         <div class="left_page">
           <?php ($notoc) ? tpl_content(false) : tpl_content() ?>
         </div>
         <div class="right_sidebar">
           <?php tpl_searchform() ?>
-          <?php tpl_sidebar('right') ?>
+          <?php arctic_tpl_sidebar('right') ?>
         </div>
       <?php } else { ?>
         <div class="page">
@@ -165,17 +165,17 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
 
     <?php } elseif(tpl_getConf('sidebar') == 'both') { ?>
 
-      <?php if(!tpl_sidebar_hide()) { ?>
+      <?php if(!arctic_tpl_sidebar_hide()) { ?>
         <div class="left_sidebar">
           <?php if(tpl_getConf('search') == 'left') tpl_searchform() ?>
-          <?php tpl_sidebar('left') ?>
+          <?php arctic_tpl_sidebar('left') ?>
         </div>
         <div class="center_page">
           <?php ($notoc) ? tpl_content(false) : tpl_content() ?>
         </div>
         <div class="right_sidebar">
           <?php if(tpl_getConf('search') == 'right') tpl_searchform() ?>
-          <?php tpl_sidebar('right') ?>
+          <?php arctic_tpl_sidebar('right') ?>
         </div>
       <?php } else { ?>
         <div class="page">
