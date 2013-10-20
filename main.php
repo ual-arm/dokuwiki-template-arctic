@@ -35,7 +35,7 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
 
   <?php tpl_metaheaders()?>
 
-  <link rel="shortcut icon" href="<?php echo DOKU_TPL?>images/favicon.ico" />
+  <?php echo tpl_favicon() ?>
 
   <?php /*old includehook*/ @include(dirname(__FILE__).'/meta.html')?>
 
