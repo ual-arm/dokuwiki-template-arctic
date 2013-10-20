@@ -204,7 +204,7 @@ function arctic_tpl_sidebar_dispatch($sb,$pos) {
                                  'recent', 
                                  'backlink', 
                                  'media', 
-                                 'subscription', 
+                                 'subscribe',
                                  'index', 
                                  'login', 
                                  'profile',

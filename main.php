@@ -227,12 +227,12 @@ require_once(dirname(__FILE__).'/tpl_functions.php');
           switch(tpl_getConf('wiki_actionlinks')) {
             case('buttons'):
                 tpl_button('media');
-                tpl_button('subscription');
+                tpl_button('subscribe');
                 tpl_button('top');
               break;
             case('links'):
                 tpl_actionlink('media');
-                tpl_actionlink('subscription');
+                tpl_actionlink('subscribe');
                 tpl_actionlink('top');
               break;
           }
