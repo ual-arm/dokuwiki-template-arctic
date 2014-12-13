@@ -26,7 +26,7 @@ div#wrapper.media {
 
 div.dokuwiki div.left_sidebar {
   float: left;
-  width: 22%;
+  width: 15%;
   padding: 0.2em 0.5em 0 0;
   border-right: 1px solid  __border__;
 }
@@ -47,9 +47,9 @@ div.dokuwiki main.left_page,
 div.dokuwiki main.right_page {
   text-align: justify;
   float: left;
-  width: 72% !important;
+  width: 79% !important;
   width: 69%;
-  padding: 2%;
+  /*padding: 2%; */
 }
 
 div.dokuwiki main.center_page {

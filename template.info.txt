@@ -1,5 +1,5 @@
 base     arctic
-author   Samuel Fischer
+author   Samuel Fischer (Mod JLBC)
 email    sf@notomorrow.de
 date     2014-10-30
 name     Arctic Template
